@@ -28,7 +28,7 @@ app.get('/planet', async (request, response) => {
 app.get('/planet/:id', async (request, response) => {
   const planetId = request.params.id
 
-  const planet = await Planet.find({
+  const planet = await Planet.findOne({
     _id: planetId
   })
 
@@ -44,7 +44,7 @@ app.put('/planet/:id', async (request, response) => {
 
   const planet = await Planet.findByIdAndUpdate(planetId, {
     name: newName
-  }, { new: true })
+  })
 
   response.send({
     data: planet
